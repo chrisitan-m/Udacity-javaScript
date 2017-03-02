@@ -8,9 +8,9 @@ var bio = {
     "name": "Christian Morsing",
     "role": "Director of Engineering",
     "contacts": {
-        "mobile": "408-905-7161",
-        "email": "morsingnet@gmail.com",
-        "github": "christian-m",
+        "mobile": "408-905-7162",
+        "email": "morsing7162@gmail.com",
+        "github": "chrisitan-m",
         "location": "Nashville, TN"
     },
 
