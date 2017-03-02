@@ -110,33 +110,28 @@ var weirdObject = {
 
 function getRelationship(x, y) {
     //Relationship compare
-    var rtnStrErr = "Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s].";
-    var rtnStr = "";
+    var rtnStr = "Can't compare relationships because [this value] and [that value] [is]/[are] not [a] number[s]";
     var rtnStrVal = ["[this value]", "[that value]"];
 
     if (arguments.length < 2) {
-        rtnStr = rtnStrErr.replace(rtnStrVal[0], x);
-        rtnStr = rtnStr.replace("[that value] [is]/[are] not [a] number[s]", "undefined are not numbers");
-        return rtnStr;
+        arguments[1] = "undefined";
     }
+
+    // We know we have two inputs
     var err = 0;
-    rtnStr = rtnStrErr;
-    // console.log(arguments[0])
     for (ii in arguments) {
-        // console.log(isNaN(arguments[ii]))
         if (isNaN(arguments[ii])) {
             err++;
             rtnStr = rtnStr.replace(rtnStrVal[ii], arguments[ii]);
-            // console.log(arguments[ii])
         }
     }
 
     switch (err) {
         case 1:
-            rtnStr = rtnStr.replace("[is]/[are] not [a] number[s]", "is not a number");
             rtnStr = rtnStr.replace(rtnStrVal[0], "");
             rtnStr = rtnStr.replace(rtnStrVal[1], "");
             rtnStr = rtnStr.replace(" and ", "");
+            rtnStr = rtnStr.replace("[is]/[are] not [a] number[s]", "is not a number");
             break;
         default:
         case 2:
@@ -148,6 +143,7 @@ function getRelationship(x, y) {
         return rtnStr;
 
 
+    // Regular comparison - the easy part
     if (x < y) rtnStr = "<";
     else if (x > y) rtnStr = ">";
     else rtnStr = "=";
@@ -160,9 +156,9 @@ function getRelationship(x, y) {
 // Try logging these functions to test your code!
 console.log(getRelationship(1, 4));
 console.log(getRelationship(1, 1));
-console.log(getRelationship("that", 2));
+console.log(getRelationship("that", 2) + " = Can't compare relationships because that is not a number");
 console.log(getRelationship("this", " something else"));
 console.log(getRelationship(3));
-console.log(getRelationship("hi"));
+console.log(getRelationship("hi") + " = Can't compare relationships because hi and undefined are not numbers");
 console.log(getRelationship(NaN));
 console.log(getRelationship(NaN, undefined));
